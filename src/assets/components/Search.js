@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import parse from "html-react-parser";
 import "tailwindcss/tailwind.css";
 
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 const Search = () => {
   const { searchTerm } = useParams();
@@ -12,9 +13,8 @@ const Search = () => {
     // Fetch YouTube videos based on the search query
     const fetchSearchResults = async () => {
       try {
-        const apiKey = "AIzaSyDifHOaaMTvscYgkTErGeUt_hIUfBVJvEs"; // Replace with your actual API key
         const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&type=video&q=${searchTerm}&chart=mostPopular&maxResults=9`
+          `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&q=${searchTerm}&chart=mostPopular&maxResults=9`
         );
         const data = await response.json();
         setSearchResults(data.items);

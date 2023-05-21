@@ -17,11 +17,8 @@ function App() {
   }
 
   const handleLogout = () => {
-    // Perform logout logic here
-    // For example, clear the user state and navigate to the login page
     setUser({});
     setProfilePicture("");
-    // Add any additional logout logic as needed
   }  
 
   function handleCallback(response) {

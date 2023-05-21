@@ -81,8 +81,6 @@ const NavBar = ({ toggleSidebar, profilePicture }) => {
           </div>
         </div>
       </span>
-      {/* Render the search results */}
-      {searchResults && searchResults.length > 0 && <Search searchResults={searchResults} />}
     </div>
   );
 };
