@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+
 const ContentArea = () => {
   return (
     <main className="col-span-4 block">
@@ -52,7 +54,7 @@ const VideoList = () => {
     const fetchVideoData = async () => {
       try {
         const response = await fetch(
-          "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=12&key=AIzaSyDifHOaaMTvscYgkTErGeUt_hIUfBVJvEs"
+          "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=12&key=" + API_KEY
         );
         const data = await response.json();
         setVideoData(data);

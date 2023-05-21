@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { YouTube } from "../icons/YouTube";
-import HamBurger from "../icons/HamBurger";
-import SearchIcon from "../icons/Search";
-import Create from "../icons/Create";
-import MenuIcon from "../icons/MenuIcon";
-import Search from "./Search";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { YouTube } from '../icons/YouTube';
+import HamBurger from '../icons/HamBurger';
+import SearchIcon from '../icons/Search';
+import Create from '../icons/Create';
+import MenuIcon from '../icons/MenuIcon';
+import Search from './Search';
+import NotificationIcon from '../icons/NotificationIcon';
 
-import NotificationIcon from "../icons/NotificationIcon";
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
-const NavBar = (props) => {
+const NavBar = ({ toggleSidebar, profilePicture }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
     try {
-      const apiKey = 'AIzaSyBpmvu_96PkMADl8FaGnhzXzdzRAd095cI'; // Replace with your actual API key
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${API_KEY}`
       );
       const data = await response.json();
       setSearchResults(data.items);
@@ -39,8 +39,8 @@ const NavBar = (props) => {
           <div className="col-span-1 bg-yt-nav h-screen">
             <div className="text-white p-4">
               <div className="flex flex-row">
-                <span className="mr-8 px-6" onClick={props.toggleSidebar}>
-                  <HamBurger/>
+                <span className="mr-8 px-6" onClick={toggleSidebar}>
+                  <HamBurger />
                 </span>
                 <span>
                   <YouTube />
@@ -69,7 +69,14 @@ const NavBar = (props) => {
               <Create />
               <MenuIcon />
               <NotificationIcon />
-              {/* Implement a google Sign in icon here with react google login */}
+              {profilePicture && (
+                <img
+                  src={profilePicture}
+                  alt="Profile"
+                  className="h-8 w-8 rounded-full"
+                />
+              )}
+              <div id="signin-button"></div>
             </div>
           </div>
         </div>
@@ -81,4 +88,3 @@ const NavBar = (props) => {
 };
 
 export default NavBar;
-
