@@ -1,3 +1,7 @@
+# Description
+
+Petite Appli Web en React.js pour découvrir l'API Youtube, le tout hébergé sur Firebase.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
